@@ -12,7 +12,7 @@ class TempDir
   end
 
   def delete
-    FIleUtils.rm_rf @path
+    FileUtils.rm_rf @path
   end
 
   def to_s

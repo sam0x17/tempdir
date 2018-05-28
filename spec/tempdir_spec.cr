@@ -1,9 +1,15 @@
 require "./spec_helper"
 
-describe Tempdir do
-  # TODO: Write tests
+describe TempDir do
+  it "creates a proper directory with default options" do
+    dir = TempDir.new
+    File.exists?(dir.path).should eq true
+  end
 
-  it "works" do
-    false.should eq(true)
+  it "deletes directory when delete method is called" do
+    dir = TempDir.new
+    File.exists?(dir.path).should eq true
+    dir.delete
+    File.exists?(dir.path).should eq false
   end
 end
