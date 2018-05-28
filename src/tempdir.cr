@@ -25,9 +25,16 @@ class TempDir
     t.delete
   end
 
+  protected def self.tmp_path_string(prefix="")
+    "/tmp/#{prefix ? prefix + "-" : ""}#{Random.rand(1000000000000000..9999999999999999)}"
+  end
+
   protected def self.tempdir(prefix="")
-    path = "/tmp/#{prefix ? prefix + "-" : ""}#{Random.rand(1000000000000000..9999999999999999)}"
-    FileUtils.mkdir_p path
+    path = tmp_path_string prefix
+    while File.exists?(path)
+      path = tmp_path_string
+    end
+    FileUtils.mkdir path
     at_exit do
       FileUtils.rm_rf path
     end

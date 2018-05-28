@@ -1,6 +1,6 @@
 # tempdir
 
-A simple crystal language shard providing on-the-fly temporary directories
+A simple crystal language shard providing on-the-fly unique temporary directories
 that are automatically deleted via an `at_exit` hook.
 
 ## Installation
