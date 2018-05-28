@@ -1,6 +1,6 @@
 # tempdir
 
-A simple crystal language library providing on-the-fly temporary directories
+A simple crystal language shard providing on-the-fly temporary directories
 that are automatically deleted via an `at_exit` hook.
 
 ## Installation
@@ -24,6 +24,28 @@ require "tempdir"
 
 dir = TempDir.new "my-prefix"
 puts dir.to_s # prints "/tmp/my-prefix-7135891628311294"
+```
+
+Also available is a block-based invocation style, which will create a temporary directory
+that will exist for the lifetime of the block that is passed (when the block ends, the
+directory is deleted).
+
+```crystal
+require "tempdir"
+
+TempDir.create do |path|
+  # do stuff with path
+end
+```
+
+As with the class-based invocation style, you can also pass a prefix:
+
+```crystal
+require "tempdir"
+
+TempDir.create("my-prefix") do |path|
+  # do stuff with path
+end
 ```
 
 ## Contributing
