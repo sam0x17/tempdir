@@ -17,7 +17,9 @@ dependencies:
 
 Simply call the constructor on the `TempDir` class and a temporary directory will be created.
 You can pass a string argument to the constructor and this will be used as a prefix to the
-directory that gets created. The suffix is populated with a 16-diit random number.
+directory that gets created. The suffix is populated with a 16-diit random number. When
+the current crystal program exits, any directories created by TempDir will be deleted
+automatically.
 
 ```crystal
 require "tempdir"
