@@ -4,11 +4,11 @@ class TempDir
   getter path : String
 
   def initialize
-    @path = tempdir
+    @path = TempDir.tempdir
   end
 
   def initialize(prefix)
-    @path = tempdir prefix
+    @path = TempDir.tempdir prefix
   end
 
   def delete
@@ -19,13 +19,13 @@ class TempDir
     @path
   end
 
-  def self.create(prefix)
-    t = tempdir prefix
+  def self.create(prefix="")
+    t = TempDir.new prefix
     yield t.path
     t.delete
   end
 
-  private def tempdir(prefix="")
+  protected def self.tempdir(prefix="")
     path = "/tmp/#{prefix ? prefix + "-" : ""}#{Random.rand(1000000000000000..9999999999999999)}"
     FileUtils.mkdir_p path
     at_exit do
