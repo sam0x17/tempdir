@@ -19,6 +19,12 @@ class TempDir
     @path
   end
 
+  def self.create(prefix)
+    t = tempdir prefix
+    yield t.path
+    t.delete
+  end
+
   private def tempdir(prefix="")
     path = "/tmp/#{prefix ? prefix + "-" : ""}#{Random.rand(1000000000000000..9999999999999999)}"
     FileUtils.mkdir_p path
