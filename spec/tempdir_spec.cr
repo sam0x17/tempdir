@@ -12,4 +12,9 @@ describe TempDir do
     dir.delete
     File.exists?(dir.path).should eq false
   end
+
+  it "creates directory prefixes correctly" do
+    dir = TempDir.new "great-prefix"
+    File.basename(dir.path).starts_with?("great-prefix").should eq true
+  end
 end
